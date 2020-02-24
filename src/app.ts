@@ -7,11 +7,9 @@ import { User } from './entity/User';
 
 createConnection().then(connection => {
   const userRepository = connection.getRepository(User);
-  // create and setup express app
   const app = express();
   app.use(bodyParser.json());
   
-  // register routes
   
   app.get("/users", async function(req: Request, res: Response) {
     const users = await userRepository.find();
@@ -41,6 +39,5 @@ createConnection().then(connection => {
     return res.send(results);
   });
   
-  // start express server
   app.listen(3000);
 })
